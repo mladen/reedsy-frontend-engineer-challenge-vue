@@ -1,12 +1,12 @@
 <template>
   <section>
-    one book.....
+    {{ book.author }}
   </section>
 </template>
 
 <script>
 export default {
-
+  props: ['book'],
 };
 </script>
 
