@@ -1,13 +1,13 @@
 <template>
   <section class="books-container">
-    <div class="row">
+    <ol class="row">
       <book
         v-for="(book, index) in books"
         :book="book"
         :index="index"
         :key="book.title"
         ></book>
-      </div>
+    </ol>
     <!-- {{ books }} -->
   </section>
 </template>
@@ -48,8 +48,8 @@ export default {
     align-items: center;
     justify-content: center;
 }
-.row {
-    width: auto;
-    border: 1px solid blue;
-}
+// .row {
+//     width: auto;
+//     border: 1px solid blue;
+// }
 </style>
