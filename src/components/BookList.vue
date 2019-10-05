@@ -1,13 +1,13 @@
 <template>
   <section class="books-container">
-    <ol class="row">
+    <div class="row">
       <book
         v-for="(book, index) in books"
         :book="book"
         :index="index"
         :key="book.title"
         ></book>
-    </ol>
+    </div>
     <!-- {{ books }} -->
   </section>
 </template>
