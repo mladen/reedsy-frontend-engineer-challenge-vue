@@ -47,9 +47,11 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .row {
+      width: auto;
+      // border: 1px solid blue;
+      box-shadow: 0 0 10px lightgrey;
+    }
 }
-// .row {
-//     width: auto;
-//     border: 1px solid blue;
-// }
 </style>
