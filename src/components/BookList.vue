@@ -1,8 +1,10 @@
 <template>
   <section class="books-container">
     <div class="row">
+      <input type="text" v-model="search" placeholder="Search">
+
       <book
-        v-for="(book, index) in books"
+        v-for="(book, index) in filteredBooks"
         :book="book"
         :index="index"
         :key="book.title"
@@ -23,6 +25,7 @@ export default {
   data() {
     return {
       books: [],
+      search: '',
     };
   },
   mounted() {
@@ -31,6 +34,14 @@ export default {
       .then(
         response => (this.books.push(...response.data.books)),
       );
+  },
+  computed: {
+    filteredBooks() {
+      return this.books.filter(book =>
+        book.title.toLowerCase().match(this.search.toLowerCase()) ||
+        book.synopsis.toLowerCase().match(this.search.toLowerCase()),
+      );
+    },
   },
 };
 </script>
