@@ -11,6 +11,14 @@
       <br><br>
 
       <p class="synopsis">{{ book.synopsis }}</p>
+
+      <br><br>
+
+      <upvote-button
+        :upvoted="book.upvoted">
+      </upvote-button>
+
+      <span>&nbsp;&nbsp; Upvoted {{ book.upvotes }} times</span>
     </div>
 
     <div class="books-cover-page">
@@ -20,7 +28,12 @@
 </template>
 
 <script>
+import UpvoteButton from './Button';
+
 export default {
+  components: {
+    'upvote-button': UpvoteButton,
+  },
   props: ['book', 'index'],
 };
 </script>
