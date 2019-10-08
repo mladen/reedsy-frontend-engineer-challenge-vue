@@ -3,12 +3,12 @@
     <div class="row">
       <input type="text" v-model="search" placeholder="Search">
 
-      <book
+      <book-list-item
         v-for="(book, index) in filteredBooks"
         :book="book"
         :index="index"
         :key="book.title"
-        ></book>
+        ></book-list-item>
     </div>
     <!-- {{ books }} -->
   </section>
@@ -16,11 +16,11 @@
 
 <script>
 import axios from 'axios';
-import Book from './Book';
+import BookListItem from './BookListItem';
 
 export default {
   components: {
-    book: Book,
+    'book-list-item': BookListItem,
   },
   data() {
     return {
@@ -51,10 +51,6 @@ export default {
     height: 100%;
     padding: 0;
     margin: 0;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
     align-items: center;
     justify-content: center;
