@@ -1,7 +1,7 @@
 <template>
   <section class="books-container">
-    <div class="row">
-      <input type="text" v-model="search" placeholder="Search">
+    <!-- <div class="row"> -->
+      <!-- <input type="text" v-model="search" placeholder="Search"> -->
 
       <book-list-item
         v-for="(book, index) in filteredBooks"
@@ -9,7 +9,7 @@
         :index="index"
         :key="book.title"
         ></book-list-item>
-    </div>
+    <!-- </div> -->
     <!-- {{ books }} -->
   </section>
 </template>
@@ -50,15 +50,18 @@ export default {
 .books-container {
     height: 100%;
     padding: 0;
-    margin: 0;
+    margin: auto;
+    // width: auto;
+    max-width: 700px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    // align-items: center;
+    // justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 10px lightgrey;
 
     .row {
       width: auto;
       // border: 1px solid blue;
-      box-shadow: 0 0 10px lightgrey;
     }
 }
 </style>

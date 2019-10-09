@@ -1,8 +1,8 @@
 <template>
   <section class="one-book-container">
     <div class="books-basic-info">
-      <span class="title"><span>{{ index + 1 }}</span>. {{ book.title }}</span>
-      <span class="rating">({{ book.rating }}/10)</span>
+      <span class="title">{{ index + 1 }}. {{ book.title }}</span>
+      &nbsp;<span class="rating">({{ book.rating }}/10)</span>
 
       <br><br>
 
@@ -18,7 +18,7 @@
         :upvoted="book.upvoted">
       </upvote-button>
 
-      <span>&nbsp;&nbsp; Upvoted {{ book.upvotes }} times</span>
+      <span class="upvotes">&nbsp;&nbsp; Upvoted {{ book.upvotes }} times</span>
     </div>
 
     <div class="books-cover-page">
@@ -41,14 +41,15 @@ export default {
 <style lang="scss" scoped>
 .one-book-container {
     background-color: white;
-    padding: 15px;
+    padding: 40px 30px 25px;
     // margin: 10px;
     line-height: 20px;
     color: #292929;
     // font-weight: bold;
-    font-size: 1em;
+    // font-size: 1em;
     text-align: left;
-    max-width: 700px;
+    // max-width: 700px;
+    flex: 1;
 
     &:nth-child(even) {
       background-color: #FAFAF3;
@@ -60,24 +61,8 @@ export default {
 
     .books-basic-info {
       // background-color: blue;
-      width: 70%;
+      width: 65%;
       // align-self: auto;
-
-      .title {
-        color: #A97721;
-        font-size: 2em;
-        font-weight: 700;
-      }
-
-      .rating {
-        font-size: 1.5em;
-      }
-
-      .author {
-        color: #555555;
-        font-size: 1em;
-        font-style: italic;
-      }
 
       .synopsis {
         white-space: nowrap;
@@ -85,12 +70,16 @@ export default {
         text-overflow: ellipsis;
         max-width: 200ch;
       }
+
+      .rating {
+        font-size: 1.3rem;
+      }
     }
 
     .books-cover-page {
       // background-color: red;
-      width: 30%;
-      padding: 20px;
+      width: 35%;
+      padding: 5px 20px;
 
       img {
         max-width: 100%;

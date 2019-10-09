@@ -1,20 +1,29 @@
 <template>
   <section class="book-details-container">
     <div class="title-and-upvotes-container">
-      <div class="title">{{ book.title }} <br> {{ book.author }}</div>
-      <div class="upvotes">{{ book.upvotes }}</div>
+      <div class="title">
+        <span class="title">{{ book.title }}</span>
+        <br>
+        <span class="author">{{ book.author }}</span>
+      </div>
+
+      <div class="upvotes">Upvoted {{ book.upvotes }} times.</div>
     </div>
 
     <div class="cover-image">
       <img v-bind:src="book.cover" alt="" srcset="">
     </div>
 
-    <div class="synopsys">
+    <div class="synopsis">
+      <span>Synopsis:</span>
+
+      <br><br>
+
       {{ book.synopsis }}
     </div>
 
     <div class="rating">
-      <!-- {{ book.rating }} -->
+      Rating: {{ book.rating }}/10
     </div>
   </section>
 </template>
@@ -44,11 +53,59 @@ export default {
 <style lang="scss" scoped>
 .book-details-container {
   height: 100%;
-  padding: 0;
-  margin: 0;
+  // padding: 10px;
+  margin: auto;
+  max-width: 700px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 0 10px lightgrey;
+
+  .title-and-upvotes-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+
+    .title {
+      flex: 3;
+    }
+    .upvotes {
+      flex: 1;
+    }
+  }
+
+  .title-and-upvotes-container,
+  .cover-image,
+  .synopsis,
+  .rating {
+    flex: 1;
+  }
+
+  .synopsis {
+    padding: 20px;
+
+    span {
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+  }
+
+  .cover-image img {
+    // width: 100%;
+    border-radius: 10px;
+    height: 100%;
+  }
+
+  .rating {
+    text-align: left;
+    padding: 20px 0 20px 20px;
+    font-weight: 700;
+    font-size: 1rem;
+  }
 
   .row {
     width: auto;

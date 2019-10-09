@@ -11,21 +11,46 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 @import "normalize.css";
 
-html, body {
-  background-color: #FAFAF3;
+body {
+  font-size: 62.5%;
 }
 
-#app {
-  /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+html, body {
+  background-color: #FAFAF3;
+  height: 100%;
+
+  #app {
+    // height: 100%;
+    /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+
+    .title {
+      color: #A97721;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .author {
+      color: #555555;
+      font-size: 1.25rem;
+      font-style: italic;
+    }
+
+    .synopsis,
+    .upvote-button,
+    .upvotes {
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
 }
 </style>
