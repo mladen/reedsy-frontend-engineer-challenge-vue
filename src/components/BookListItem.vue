@@ -19,7 +19,7 @@
 
       <br><br>
 
-      <p class="synopsis">{{ book.synopsis }}</p>
+      <p class="synopsis">{{ truncatedSynopsis }}</p>
 
       <br><br>
 
@@ -44,6 +44,11 @@ export default {
     'upvote-button': UpvoteButton,
   },
   props: ['book', 'index'],
+  computed: {
+    truncatedSynopsis() {
+      return this.book.synopsis.substring(0, 200) + "...";
+    },
+  },
 };
 </script>
 
@@ -72,13 +77,6 @@ export default {
       // background-color: blue;
       width: 65%;
       // align-self: auto;
-
-      .synopsis {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200ch;
-      }
 
       .rating {
         font-size: 1.3rem;
