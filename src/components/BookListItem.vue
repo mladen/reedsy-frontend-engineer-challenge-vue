@@ -46,7 +46,7 @@ export default {
   props: ['book', 'index'],
   computed: {
     truncatedSynopsis() {
-      return this.book.synopsis.substring(0, 200) + "...";
+      return this.book.synopsis.substring(0, 200).concat('...');
     },
   },
 };
