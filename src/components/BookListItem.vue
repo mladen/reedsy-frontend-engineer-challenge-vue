@@ -1,8 +1,17 @@
 <template>
   <section class="one-book-container">
     <div class="books-basic-info">
-      <span class="title">{{ index + 1 }}. {{ book.title }}</span>
-      &nbsp;<span class="rating">({{ book.rating }}/10)</span>
+      <span class="title">
+        {{ index + 1 }}. &nbsp;
+
+        <router-link v-bind:to="'/books/' + book.slug">
+          {{ book.title }}
+        </router-link>
+      </span>
+
+      &nbsp;
+
+      <span class="rating">({{ book.rating }}/10)</span>
 
       <br><br>
 
