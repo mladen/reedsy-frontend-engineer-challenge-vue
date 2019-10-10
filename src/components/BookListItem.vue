@@ -4,7 +4,7 @@
       <span class="title">
         {{ index + 1 }}. &nbsp;
 
-        <router-link v-bind:to="'/books/' + book.slug">
+        <router-link class="router-link-title" v-bind:to="'/books/' + book.slug">
           {{ book.title }}
         </router-link>
       </span>
@@ -30,9 +30,9 @@
       <span class="upvotes">&nbsp;&nbsp; Upvoted {{ book.upvotes }} times</span>
     </div>
 
-    <div class="books-cover-page">
+    <router-link v-bind:to="'/books/' + book.slug" class="books-cover-page">
       <img v-bind:src="book.cover" alt="" srcset="">
-    </div>
+    </router-link>
   </section>
 </template>
 

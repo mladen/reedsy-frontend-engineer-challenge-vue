@@ -33,10 +33,12 @@ html, body {
     text-align: center;
     color: #2c3e50;
 
-    .title {
+    .title,
+    .title .router-link-title {
       color: #A97721;
       font-size: 1.6rem;
       font-weight: 700;
+      text-decoration: none;
     }
 
     .author {
