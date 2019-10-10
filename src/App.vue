@@ -46,10 +46,13 @@ html, body {
     }
 
     .synopsis,
-    .upvote-button,
-    .upvotes {
+    .upvote-button {
       font-size: 1rem;
       text-align: left;
+    }
+
+    .upvotes {
+      font-size: 1rem;
     }
   }
 }

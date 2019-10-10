@@ -7,7 +7,11 @@
         <span class="author">{{ book.author }}</span>
       </div>
 
-      <div class="upvotes">Upvoted {{ book.upvotes }} times.</div>
+      <div class="upvotes">Upvoted {{ book.upvotes }} times &nbsp;&nbsp;
+        <upvote-button
+          :upvoted="book.upvoted">
+        </upvote-button>
+      </div>
     </div>
 
     <div class="cover-image">
@@ -30,8 +34,12 @@
 
 <script>
 import axios from 'axios';
+import UpvoteButton from './Button';
 
 export default {
+  components: {
+    'upvote-button': UpvoteButton,
+  },
   data() {
     return {
       slug: this.$route.params.slug,
@@ -71,10 +79,12 @@ export default {
     text-align: left;
 
     .title {
-      flex: 3;
+      flex: 1;
     }
     .upvotes {
       flex: 1;
+      margin: auto;
+      text-align: right;
     }
   }
 
