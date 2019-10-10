@@ -12,19 +12,25 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
 @import "normalize.css";
 
+html {
+  height: 100%;
+}
+
 body {
+  min-height: 100%;
+  display: flex;
   font-size: 62.5%;
 }
 
 html, body {
   background-color: #FAFAF3;
-  height: 100%;
 
   #app {
-    // height: 100%;
+    min-height: 100%;
+    flex: 1;
     /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -43,8 +49,9 @@ html, body {
 
     .author {
       color: #555555;
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-style: italic;
+      font-weight: 600;
     }
 
     .synopsis,

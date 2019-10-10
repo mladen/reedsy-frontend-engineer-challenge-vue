@@ -1,9 +1,11 @@
 <template>
   <section class="book-details-container">
     <div class="title-and-upvotes-container">
-      <div class="title">
+      <div class="title-and-author">
         <span class="title">{{ book.title }}</span>
-        <br>
+
+        <br><br>
+
         <span class="author">{{ book.author }}</span>
       </div>
 
