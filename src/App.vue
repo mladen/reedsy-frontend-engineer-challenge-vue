@@ -15,6 +15,8 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
 @import "normalize.css";
 
+$main-gold-color: #A97721;
+
 html {
   height: 100%;
 }
@@ -41,7 +43,7 @@ html, body {
 
     .title,
     .title .router-link-title {
-      color: #A97721;
+      color: $main-gold-color;
       font-size: 1.6rem;
       font-weight: 700;
       text-decoration: none;
