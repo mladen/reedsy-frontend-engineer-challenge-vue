@@ -15,7 +15,7 @@
     <button v-on:click="increase">Idi na sledecu stranicu</button>
 
     <book-list-item
-      v-for="(book, index) in (filteredBooks.length !== 0) ? filteredBooks : books"
+      v-for="(book, index) in filteredBooksForOnePage"
       :book="book"
       :index="index"
       :key="book.title"
@@ -54,8 +54,14 @@ export default {
     axios
       .get('http://localhost:3000/books')
       .then(
-        response => (this.books.push(...response.data.books)),
+        (response) => {
+          this.books.push(...response.data.books);
+          this.renderAList();
+        },
       );
+
+    // this.$nextTick(
+    // );
   },
   computed: {
     // Test computed property
@@ -73,16 +79,15 @@ export default {
     increase() {
       this.currentPage += 1;
     },
-  },
-  watch: {
-    // When data's "search" variable is changed, do the following
-    search() {
+    renderAList() {
       // Filter books and put the filtered books into a this.filteredBooks
+      // Here, we got an array of 4 books
       this.filteredBooks = this.books.filter(book =>
         book.title.toLowerCase().match(this.search.toLowerCase()) ||
         book.synopsis.toLowerCase().match(this.search.toLowerCase()),
       );
 
+      // Here we have 4
       this.numberOfFilteredBooks = this.filteredBooks.length;
 
       // Here we get 1
@@ -92,17 +97,23 @@ export default {
       // Here we get 1 more page (for the remaining results)
       const remainderPageExists = this.numberOfFilteredBooks % this.booksPerPage;
 
-      // Here we get 2 pages (adding the 1 full and 1 partial pages
+      // So we got 2 pages (adding the 1 full and 1 partial pages
       // that we got in the previous steps)
       this.numberOfPages = (remainderPageExists !== 0) ?
         numberOfFullPages + 1 :
         numberOfFullPages;
 
       // debugger;
-      this.filteredBooksForOnePage = this.books.slice(
+      this.filteredBooksForOnePage = this.filteredBooks.slice(
         (this.currentPage * this.booksPerPage),
         ((this.currentPage * this.booksPerPage) + this.booksPerPage),
       );
+    },
+  },
+  watch: {
+    // When data's "search" variable is changed, do the following
+    search() {
+      this.renderAList();
     },
   },
 };
