@@ -1,22 +1,26 @@
 <template>
-  <div class="upvote-button-container">
-    <button class="upvote-button upvoted" v-if="upvoted">Upvoted</button>
-    <button class="upvote-button" v-else>Upvote</button>
-  </div>
+  <section class="one-paginator-container">
+    <a
+      v-for="index in numberOfPages"
+      v-bind:key="index"
+      v-bind:href="'#/' + index" class="one-paginator">Page {{ index }}</a>
+  </section>
 </template>
 
 <script>
 export default {
-  props: ['upvoted'],
+  props: {
+    numberOfPages: Number,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 $main-button-color: #DDAA43;
-.upvote-button-container {
-  display: inline;
+.one-paginator-container {
+  display: flex;
 
-  .upvote-button {
+  .one-paginator {
     padding: 10px 20px 13px;
     border: none;
     border-radius: 8px;

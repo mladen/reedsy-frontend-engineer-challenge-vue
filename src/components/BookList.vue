@@ -2,31 +2,52 @@
   <section class="books-container">
     <div class="title-and-search-container">
       <div class="main-title">Top books of all time</div>
-      <input type="text" v-model="search" placeholder="Search" class="search-books">
+
+      <div class="search-and-show-books">
+        <input type="text" v-model="search" placeholder="Search" class="search-books">
+
+        <input type="text" v-model="booksPerPage" name="offset"
+          v-bind:placeholder="`Number of books shown is ` + booksPerPage + ` (default)`"
+          id="showBooks" class="show-books">
+      </div>
     </div>
 
+    <button v-on:click="increase">Idi na sledecu stranicu</button>
+
     <book-list-item
-      v-for="(book, index) in filteredBooks"
+      v-for="(book, index) in (filteredBooks.length !== 0) ? filteredBooks : books"
       :book="book"
       :index="index"
       :key="book.title"
       ></book-list-item>
     <!-- {{ books }} -->
+
+    <!-- <pagination :numberOfPages="numberOfPages"></pagination> -->
   </section>
 </template>
 
 <script>
 import axios from 'axios';
 import BookListItem from './BookListItem';
+import Pagination from './Pagination';
 
 export default {
   components: {
     'book-list-item': BookListItem,
+    pagination: Pagination,
   },
   data() {
     return {
-      books: [],
       search: '',
+      books: [],
+      numberOfFilteredBooks: '', // For example 4
+      booksPerPage: 3, // Let this be a default (at least for now)
+      filteredBooks: [], // A list of 4 books that we'll get after filtering
+      filteredBooksForOnePage: [], // A list of 3 books (and in a second
+      // iteration it's gonna be 1 more book)
+      numberOfPages: '', // This will be calculated and we'll get 2 pages
+      currentPage: 0, // Place where we'll keep an information about the
+      // current page. Default is 1 (first page).
     };
   },
   mounted() {
@@ -37,10 +58,50 @@ export default {
       );
   },
   computed: {
-    filteredBooks() {
-      return this.books.filter(book =>
+    // Test computed property
+    redoList() {
+      // If the number of books is 10
+      // and if the number of those 10 books, that we want to show per page, is 3
+      // const offset = floor(this.books.length / this.booksPerPage);
+      const lastPage = this.books.length % this.booksPerPage;
+
+      return lastPage;
+    },
+  },
+  methods: {
+    // Test method
+    increase() {
+      this.currentPage += 1;
+    },
+  },
+  watch: {
+    // When data's "search" variable is changed, do the following
+    search() {
+      // Filter books and put the filtered books into a this.filteredBooks
+      this.filteredBooks = this.books.filter(book =>
         book.title.toLowerCase().match(this.search.toLowerCase()) ||
         book.synopsis.toLowerCase().match(this.search.toLowerCase()),
+      );
+
+      this.numberOfFilteredBooks = this.filteredBooks.length;
+
+      // Here we get 1
+      const numberOfFullPages = Math.floor(this.numberOfFilteredBooks / this.booksPerPage);
+      // Calculating modulus (if the remainer of the division is not zero that
+      // means that the modulus exists and therefore we need an extra page for those results)
+      // Here we get 1 more page (for the remaining results)
+      const remainderPageExists = this.numberOfFilteredBooks % this.booksPerPage;
+
+      // Here we get 2 pages (adding the 1 full and 1 partial pages
+      // that we got in the previous steps)
+      this.numberOfPages = (remainderPageExists !== 0) ?
+        numberOfFullPages + 1 :
+        numberOfFullPages;
+
+      // debugger;
+      this.filteredBooksForOnePage = this.books.slice(
+        (this.currentPage * this.booksPerPage),
+        ((this.currentPage * this.booksPerPage) + this.booksPerPage),
       );
     },
   },
@@ -76,16 +137,28 @@ $main-gold-color: #A97721;
         padding: 20px 0 20px 0;
       }
 
-      .search-books {
-        flex: 1;
-        height: 50px;
-        font-size: 1.3rem;
-        width: 70%;
-        text-align: center;
-        margin: auto;
-        color: #757575;
-        // border: thin solid lighten($color: $main-gold-color, $amount: 50);
-        border: none;
+      .search-and-show-books {
+        display: flex;
+
+        .search-books,
+        .show-books {
+          height: 50px;
+          font-size: 1.3rem;
+          // width: 40%;
+          text-align: center;
+          margin: auto 30px;
+          color: #757575;
+          // border: thin solid lighten($color: $main-gold-color, $amount: 50);
+          border: none;
+        }
+
+        .search-books {
+          flex: 2;
+        }
+
+        .show-books {
+          flex: 1;
+        }
       }
     }
 
