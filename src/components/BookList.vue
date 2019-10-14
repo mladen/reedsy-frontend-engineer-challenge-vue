@@ -22,7 +22,9 @@
       ></book-list-item>
     <!-- {{ books }} -->
 
-    <!-- <pagination :numberOfPages="numberOfPages"></pagination> -->
+    <pagination
+      :numberOfPages=numberOfPages>
+    </pagination>
   </section>
 </template>
 
@@ -45,7 +47,7 @@ export default {
       filteredBooks: [], // A list of 4 books that we'll get after filtering
       filteredBooksForOnePage: [], // A list of 3 books (and in a second
       // iteration it's gonna be 1 more book)
-      numberOfPages: '', // This will be calculated and we'll get 2 pages
+      numberOfPages: 0, // This will be calculated and we'll get 2 pages
       currentPage: 0, // Place where we'll keep an information about the
       // current page. Default is 1 (first page).
     };
@@ -113,6 +115,9 @@ export default {
   watch: {
     // When data's "search" variable is changed, do the following
     search() {
+      this.renderAList();
+    },
+    booksPerPage() {
       this.renderAList();
     },
   },

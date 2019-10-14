@@ -1,17 +1,25 @@
 <template>
   <section class="one-paginator-container">
-    <a
+    <!-- <a
       v-for="index in numberOfPages"
       v-bind:key="index"
-      v-bind:href="'#/' + index" class="one-paginator">Page {{ index }}</a>
+      v-bind:href="'#/' + index" class="one-paginator">Page {{ index }}</a> -->
+      <button
+        v-for="index in numberOfPages"
+        v-bind:key="index">{{ index }}
+      </button>
   </section>
 </template>
 
 <script>
 export default {
   props: {
-    numberOfPages: Number,
+    numberOfPages: {
+      type: Number,
+      required: true,
+    },
   },
+  // props: ['numberOfPages'],
 };
 </script>
 
