@@ -12,8 +12,6 @@
       </div>
     </div>
 
-    <button v-on:click="increase">Idi na sledecu stranicu</button>
-
     <book-list-item
       v-for="(book, index) in filteredBooksForOnePage"
       :book="book"
@@ -23,7 +21,8 @@
     <!-- {{ books }} -->
 
     <pagination
-      :numberOfPages=numberOfPages>
+      :numberOfPages="numberOfPages"
+      v-on:goto-page="goToPage">
     </pagination>
   </section>
 </template>
@@ -61,26 +60,8 @@ export default {
           this.renderAList();
         },
       );
-
-    // this.$nextTick(
-    // );
-  },
-  computed: {
-    // Test computed property
-    redoList() {
-      // If the number of books is 10
-      // and if the number of those 10 books, that we want to show per page, is 3
-      // const offset = floor(this.books.length / this.booksPerPage);
-      const lastPage = this.books.length % this.booksPerPage;
-
-      return lastPage;
-    },
   },
   methods: {
-    // Test method
-    increase() {
-      this.currentPage += 1;
-    },
     renderAList() {
       // Filter books and put the filtered books into a this.filteredBooks
       // Here, we got an array of 4 books
@@ -111,13 +92,23 @@ export default {
         ((this.currentPage * this.booksPerPage) + this.booksPerPage),
       );
     },
+    goToPage(newPageNumber) {
+      // Goes from 0 (to 3 in our simple example) - because we have 4 pages
+      this.currentPage = newPageNumber;
+    },
   },
   watch: {
     // When data's "search" variable is changed, do the following
     search() {
+      if (this.currentPage !== 0) {
+        this.currentPage = 0;
+      }
       this.renderAList();
     },
     booksPerPage() {
+      this.renderAList();
+    },
+    currentPage() {
       this.renderAList();
     },
   },
