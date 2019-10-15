@@ -7,7 +7,7 @@
         <input type="text" v-model="search" placeholder="Search" class="search-books">
 
         <input type="text" v-model="booksPerPage" name="offset"
-          v-bind:placeholder="`Number of books shown is ` + booksPerPage + ` (default)`"
+          placeholder="Page size is 3 books (default)"
           id="showBooks" class="show-books">
       </div>
     </div>
