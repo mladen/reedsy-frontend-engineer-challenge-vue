@@ -22,6 +22,7 @@
 
     <pagination
       :numberOfPages="numberOfPages"
+      :currentPage="currentPage"
       v-on:goto-page="goToPage">
     </pagination>
   </section>
