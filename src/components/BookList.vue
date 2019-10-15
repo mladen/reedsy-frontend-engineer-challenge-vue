@@ -6,9 +6,11 @@
       <div class="search-and-show-books">
         <input type="text" v-model="search" placeholder="Search" class="search-books">
 
-        <input type="text" v-model="booksPerPage" name="offset"
-          placeholder="Page size is 3 books (default)"
-          id="showBooks" class="show-books">
+        <div class="incrementDecrementPageSize">
+          <div class="decrementPageSize" v-on:click="booksPerPage += 1">&uarr;</div>
+            Page size is {{ booksPerPage }}
+          <div class="incrementPageSize" v-on:click="booksPerPage -= 1">&darr;</div>
+        </div>
       </div>
     </div>
 
@@ -107,6 +109,11 @@ export default {
       this.renderAList();
     },
     booksPerPage() {
+      if (this.booksPerPage < 1) {
+        this.booksPerPage = 1; // Min Page Size
+      } else if (this.booksPerPage > this.filteredBooks.length) {
+        this.booksPerPage = this.filteredBooks.length; // Max Page Size
+      }
       this.renderAList();
     },
     currentPage() {
@@ -148,8 +155,7 @@ $main-gold-color: #A97721;
       .search-and-show-books {
         display: flex;
 
-        .search-books,
-        .show-books {
+        .search-books {
           height: 50px;
           font-size: 1.3rem;
           // width: 40%;
@@ -158,14 +164,18 @@ $main-gold-color: #A97721;
           color: #757575;
           // border: thin solid lighten($color: $main-gold-color, $amount: 50);
           border: none;
-        }
-
-        .search-books {
           flex: 2;
         }
 
-        .show-books {
+        .incrementDecrementPageSize {
           flex: 1;
+          margin: auto;
+          font-size: 1.3rem;
+
+          .incrementPageSize,
+          .decrementPageSize {
+            cursor: pointer;
+          }
         }
       }
     }
