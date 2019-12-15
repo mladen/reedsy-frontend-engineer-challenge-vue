@@ -56,7 +56,7 @@ export default {
   },
   mounted() {
     axios
-      .get(`http://reedsy-server.herokuapp.com/`)
+      .get('http://reedsy-server.herokuapp.com/')
       .then(
         (response) => {
           this.books.push(...response.data.books);
