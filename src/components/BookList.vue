@@ -57,8 +57,24 @@ export default {
   mounted() {
     axios
       .get('http://reedsy-server.herokuapp.com/books')
+      // .get('http://localhost:5000/books')
       .then(
         (response) => {
+          response.data.books.forEach((book) => {
+            // eslint-disable-next-line no-console
+            console.log(book);
+
+            const n = book.cover.lastIndexOf('/');
+
+            // Dynamically determining the port
+            // const port = location.port ? `${location.port}` : '';
+            const port = 5000; // Ermm...we actually need the server's port
+            /* eslint-disable no-unused-vars */
+            const urlWithPort = `${location.protocol}//${location.hostname}:${port}/images`;
+            const wholeUrl = `${urlWithPort}/${book.cover.substring(n + 1)}`;
+            // debugger;
+          });
+
           this.books.push(...response.data.books);
           this.renderAList();
         },
