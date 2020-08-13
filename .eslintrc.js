@@ -10,7 +10,7 @@ module.exports = {
   },
   // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
   // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-  extends: ['plugin:vue/essential', 'airbnb-base'],
+  extends: ['plugin:vue/base', 'airbnb-base'],
   // required to lint *.vue files
   plugins: [
     'vue'
@@ -20,6 +20,10 @@ module.exports = {
     'import/resolver': {
       webpack: {
         config: 'build/webpack.base.conf.js'
+      },
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
       }
     }
   },
