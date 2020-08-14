@@ -68,10 +68,11 @@ export default {
 
             // Dynamically determining the port
             // const port = location.port ? `${location.port}` : '';
-            const port = 5000; // Ermm...we actually need the server's port
+            // const port = 5000; // Ermm...we actually need the server's port
             /* eslint-disable no-unused-vars */
-            const urlWithPort = `${location.protocol}//${location.hostname}:${port}/images`;
-            const wholeUrl = `${urlWithPort}/${book.cover.substring(n + 1)}`;
+            const url = 'http://reedsy-server.herokuapp.com/images';
+            // const url = `${location.protocol}//${location.hostname}:${port}/images`;
+            const wholeUrl = `${url}/${book.cover.substring(n + 1)}`;
             // debugger;
 
             // Push a whole book (to a books array)
