@@ -56,7 +56,7 @@ export default {
   },
   mounted() {
     axios
-      .get('http://reedsy-server.herokuapp.com/books')
+      .get('https://reedsy-server.herokuapp.com/books')
       // .get('http://localhost:5000/books')
       .then(
         (response) => {
