@@ -66,7 +66,7 @@ export default {
           // Dynamically determining the port
           // const port = location.port ? `${location.port}` : '';
           // const port = 5000; // Ermm...we actually need the server's port
-          const url = 'http://reedsy-server.herokuapp.com';
+          const url = 'https://reedsy-server.herokuapp.com';
           this.book.cover = `${url}/images/${this.book.cover.substring(n + 1)}`;
           // eslint-disable-next-line no-console
           console.log(this.book);

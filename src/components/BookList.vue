@@ -75,7 +75,7 @@ export default {
             // const port = location.port ? `${location.port}` : '';
             // const port = 5000; // Ermm...we actually need the server's port
             /* eslint-disable no-unused-vars */
-            const url = 'http://reedsy-server.herokuapp.com/images';
+            const url = 'https://reedsy-server.herokuapp.com/images';
             // const url = `${location.protocol}//${location.hostname}:${port}/images`;
             const wholeUrl = `${url}/${book.cover.substring(n + 1)}`;
             // debugger;
