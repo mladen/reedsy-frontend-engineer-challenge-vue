@@ -60,7 +60,7 @@ export default {
       // .get('http://localhost:5000/books')
       .then(
         (response) => {
-          response.data.books.forEach((book) => {
+          response.data.books.forEach((book, index) => {
             // eslint-disable-next-line no-console
             console.log(book);
 
@@ -73,9 +73,14 @@ export default {
             const urlWithPort = `${location.protocol}//${location.hostname}:${port}/images`;
             const wholeUrl = `${urlWithPort}/${book.cover.substring(n + 1)}`;
             // debugger;
+
+            // Push a whole book (to a books array)
+            this.books.push(book);
+            // but replace the cover value by a modified value (which doesn't contain
+            // that 7a44b503-1157-4a0d-8b1f-823741679c94, or similar, type of a string)
+            this.books[index].cover = wholeUrl;
           });
 
-          this.books.push(...response.data.books);
           this.renderAList();
         },
       );
