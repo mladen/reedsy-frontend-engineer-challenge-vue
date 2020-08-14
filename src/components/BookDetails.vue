@@ -56,18 +56,18 @@ export default {
         (response) => {
           this.book = { ...response.data };
 
-          // On my local machine, and on the server I get different URL paths to pictures
-          // locally: "http://integral:5000/images/01.jpg"
-          // server (Heroku): "http://7a44b503-1157-4a0d-8b1f-823741679c94:43530/images/01.jpg"
-          // so let's just go through the response and replace the url with the last part
-          // for example with "03.jpg"
+          // ! On my local machine, and on the server I get different URL paths to pictures
+          // ! locally: "http://integral:5000/images/01.jpg"
+          // ! server (Heroku): "http://7a44b503-1157-4a0d-8b1f-823741679c94:43530/images/01.jpg"
+          // ! so let's just go through the response and replace the url with the last part
+          // ! for example with "03.jpg"
           const n = this.book.cover.lastIndexOf('/');
 
           // Dynamically determining the port
           // const port = location.port ? `${location.port}` : '';
-          const port = 5000; // Ermm...we actually need the server's port
-          const urlWithPort = `${location.protocol}//${location.hostname}:${port}/images`;
-          this.book.cover = `${urlWithPort}/${this.book.cover.substring(n + 1)}`;
+          // const port = 5000; // Ermm...we actually need the server's port
+          const url = 'http://reedsy-server.herokuapp.com';
+          this.book.cover = `${url}/images/${this.book.cover.substring(n + 1)}`;
           // eslint-disable-next-line no-console
           console.log(this.book);
         },

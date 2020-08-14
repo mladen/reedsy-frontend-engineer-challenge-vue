@@ -64,6 +64,11 @@ export default {
             // eslint-disable-next-line no-console
             console.log(book);
 
+            // ! On my local machine, and on the server I get different URL paths to pictures
+            // ! locally: "http://integral:5000/images/01.jpg"
+            // ! server (Heroku): "http://7a44b503-1157-4a0d-8b1f-823741679c94:43530/images/01.jpg"
+            // ! so let's just go through the response and replace the url with the last part
+            // ! for example with "03.jpg"
             const n = book.cover.lastIndexOf('/');
 
             // Dynamically determining the port
